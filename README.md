@@ -1,5 +1,5 @@
 # utils
-工具类函数
+go utils func
 
 # install
 ```shell
