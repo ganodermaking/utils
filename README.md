@@ -13,12 +13,12 @@ if utils.In([]int{1, 2, 3, 4}, 1) {
     // ...
 }
 
-// 字符串转int64
+// 简化字符串转int64
 int64 := utils.ParseInt(str)
 
-// 字符串转int32
+// 简化字符串转int32
 int32 := utils.Atoi(str)
 
-// 复制
+// 简化复制
 utils.Copy(&employees, &user)
 ```
