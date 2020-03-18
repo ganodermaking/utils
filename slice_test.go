@@ -5,9 +5,7 @@ import (
 )
 
 func TestIn(t *testing.T) {
-	haystack := []int{1, 2, 3, 4}
-	needle := 1
-	if !In(haystack, needle) {
+	if !In([]int{1, 2, 3, 4}, 1) {
 		t.Error("fail")
 		return
 	}
