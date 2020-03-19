@@ -4,8 +4,8 @@ import (
 	"reflect"
 )
 
-// InArray 元素是否在切片或数组内
-func InArray(haystack interface{}, needle interface{}) bool {
+// InArray 元素、切片或数组是否在切片或数组内
+func InArray(haystack, needle interface{}) bool {
 	hVal := reflect.ValueOf(haystack)
 	hKind := hVal.Kind()
 
