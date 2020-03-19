@@ -8,6 +8,12 @@ go get github.com/ganodermaking/utils
 
 # example
 ```go
+// 截取字符串
+utils.Substr("0123456789X", 5, 4)
+
+// 截取字符串（包含中文字符）
+utils.Substr("01234中国6789X", 5, 4)
+
 // 元素是否在切片或数组内
 if utils.InArray([]int{1, 2, 3, 4}, 1) {
     // ...
