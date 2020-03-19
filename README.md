@@ -1,5 +1,5 @@
 # utils
-go utils func
+simplify go utils func
 
 # install
 ```shell
@@ -9,7 +9,12 @@ go get github.com/ganodermaking/utils
 # example
 ```go
 // 元素是否在切片或数组内
-if utils.In([]int{1, 2, 3, 4}, 1) {
+if utils.InArray([]int{1, 2, 3, 4}, 1) {
+    // ...
+}
+
+// 切片或数组是否在切片或数组内
+if utils.InArray([]int{1, 2, 3, 4}, []int{1, 4}) {
     // ...
 }
 

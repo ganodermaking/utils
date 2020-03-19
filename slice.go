@@ -4,18 +4,61 @@ import (
 	"reflect"
 )
 
-// In 元素是否在切片或数组内
-func In(haystack interface{}, needle interface{}) bool {
-	refVal := reflect.ValueOf(haystack)
-	kind := refVal.Kind()
+// InArray 元素是否在切片或数组内
+func InArray(haystack interface{}, needle interface{}) bool {
+	hVal := reflect.ValueOf(haystack)
+	hKind := hVal.Kind()
 
-	if kind == reflect.Slice || kind == reflect.Array {
-		for i := 0; i < refVal.Len(); i++ {
-			if refVal.Index(i).Interface() == needle {
-				return true
+	nVal := reflect.ValueOf(needle)
+	nKind := nVal.Kind()
+
+	if hKind != reflect.Slice && hKind != reflect.Array {
+		return false
+	}
+
+	var flag bool
+	switch nKind {
+	case reflect.Slice:
+		flag = sliInArray(hVal, nVal)
+		break
+	case reflect.Array:
+		flag = sliInArray(hVal, nVal)
+		break
+	default:
+		flag = eleInArray(hVal, needle)
+	}
+
+	return flag
+}
+
+// sliInArray ...
+func sliInArray(haystack, needle reflect.Value) bool {
+	needleInMap := map[int]bool{}
+	for i := 0; i < needle.Len(); i++ {
+		needleInMap[i] = false
+		for j := 0; j < haystack.Len(); j++ {
+			if haystack.Index(j).Interface() == needle.Index(i).Interface() {
+				needleInMap[i] = true
+				break
 			}
 		}
 	}
 
+	for _, item := range needleInMap {
+		if item == false {
+			return false
+		}
+	}
+
+	return true
+}
+
+// eleInArray ...
+func eleInArray(haystack reflect.Value, needle interface{}) bool {
+	for i := 0; i < haystack.Len(); i++ {
+		if haystack.Index(i).Interface() == needle {
+			return true
+		}
+	}
 	return false
 }
